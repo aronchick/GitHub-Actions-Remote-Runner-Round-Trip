@@ -32,4 +32,5 @@ jobs:
     
     - name: Run VM Creation Script
       run: |
+        pipenv install
         pipenv run create_vm.py
