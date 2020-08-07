@@ -15,7 +15,7 @@ resource_client = get_client_from_cli_profile(ResourceManagementClient)
 
 # Constants we need in multiple places: the resource group name and the region
 # in which we provision resources. You can change these values however you want.
-RESOURCE_GROUP_NAME = "CI-VM-Sample-rg"
+RESOURCE_GROUP_NAME = "ci_sample_rg"
 LOCATION = "centralus"
 
 # Provision the resource group.
