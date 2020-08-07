@@ -22,10 +22,17 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    - name: Azure Login
-      uses: Azure/login@v1
+    - name: Install pipenv
+      uses: dschep/install-pipenv-action@v1
       with:
-        # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
-        creds: ${{ secret.AZURE_CREDENTIALS }}
-        # Set this value to true to enable Azure PowerShell Login in addition to Az CLI login
-        enable-AzPSSession: true
+        # version
+        version: 3.8
+
+    - name: Login via Az module
+      uses: azure/login@v1.1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+    
+    - name: Run VM Creation Script
+      run: |
+        pipenv run create_vm.py
