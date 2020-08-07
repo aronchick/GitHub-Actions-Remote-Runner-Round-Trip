@@ -6,9 +6,9 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -22,14 +22,28 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
     - name: Install pipenv
       uses: dschep/install-pipenv-action@v1
-
+      
     - name: Login via Az module
       uses: azure/login@v1.1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
-    
+
     - name: Run VM Creation Script
+      id: vm_create
       run: |
-        pipenv run create_vm.py
+        pipenv install
+        ssh-keygen -b 2048 -t rsa -f /tmp/sshkey -q -N ""
+        pipenv run python3 ~/create_vm.py
+
+    - name: Push script and run on runner
+      id: run_on_runner
+      run: |
+        scp -i /tmp/sshkey -o StrictHostKeyChecking=no do_work_on_runner.py ${{ outputs.vm_create.USERNAME }}@${{ outputs.vm_create.IP_ADDRESS }}:do_work_on_remote_runner.py
+        ssh -i /tmp/sshkey -o StrictHostKeyChecking=no ${{ outputs.vm_create.USERNAME }}@${{outputs.vm_create.IP_ADDRESS }} 'python3 do_work_on_remote_runner.py ${{ secrets.GH_ACTION_TOKEN }} ${{ outputs.vm_create.RUN_ID }} &'

@@ -1,0 +1,20 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+black = "*"
+
+[packages]
+azure-mgmt-resource = "*"
+azure-mgmt-network = "*"
+azure-mgmt-compute = "*"
+azure-cli-core = "*"
+ipython = "*"
+
+[requires]
+python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true

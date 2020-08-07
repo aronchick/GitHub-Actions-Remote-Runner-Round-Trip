@@ -1,0 +1,23 @@
+name: Webhook Example
+on: repository_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    
+    - id: webhook_fire
+      if: github.event.action == 'runner_finished'
+      run: |
+        echo "Python Fired"
+
+    - name: Login via Az module
+      uses: azure/login@v1.1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+
+      
+    - name: On my_custom_webhook_2 do XYZ...
+      if: github.event.action == 'runner_finished'
+      run: |
+        echo "Hello From my_custom_webhook_2...doing XYZ"
