@@ -24,9 +24,6 @@ jobs:
 
     - name: Install pipenv
       uses: dschep/install-pipenv-action@v1
-      with:
-        # version
-        version: 3.8
 
     - name: Login via Az module
       uses: azure/login@v1.1
