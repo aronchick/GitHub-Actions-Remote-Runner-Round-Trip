@@ -38,5 +38,4 @@ jobs:
     - name: Run VM Creation Script
       run: |
         pipenv install
-        pipenv shell
-        python3 ~/create_vm.py
+        pipenv run python3 ~/create_vm.py
