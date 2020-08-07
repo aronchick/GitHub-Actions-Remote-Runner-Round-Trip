@@ -217,6 +217,6 @@ print(f"Provisioned virtual machine {vm_result.name}")
 print(f"::set-output name=VM_NAME::{VM_NAME}")
 print(f"::set-output name=USERNAME::{USERNAME}")
 print(f"::set-output name=IP_ADDRESS::{ip_address_result.ip_address}")
+print(f"::set-output name=RUN_ID::{unique_string}")
 
 print(f"SSH Command = \nssh -i /tmp/sshkey -o StrictHostKeyChecking=no {USERNAME}@{ip_address_result.ip_address} 'ls -lAR'")
-# scp -i /tmp/sshkey -o StrictHostKeyChecking=no do_work_on_runner.py e5ecb2d144bf4f7fb77ad87a3e5090e5@52.154.210.237:do_work_on_remote_runner.py

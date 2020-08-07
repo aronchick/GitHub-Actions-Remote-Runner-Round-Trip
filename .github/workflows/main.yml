@@ -45,4 +45,5 @@ jobs:
     - name: Push script and run on runner
       id: run_on_runner
       run: |
-        scp ${{steps.step1.outputs.}} 
+        scp -i /tmp/sshkey -o StrictHostKeyChecking=no do_work_on_runner.py ${{vm_create.outputs.USERNAME}}@${{vm_create.outputs.IP_ADDRESS}}:do_work_on_remote_runner.py
+        ssh -i /tmp/sshkey -o StrictHostKeyChecking=no ${{vm_create.outputs.USERNAME}}@${{vm_create.outputs.IP_ADDRESS}} 'python3 do_work_on_remote_runner.py ${{ secrets.GH_ACTION_TOKEN }} ${{ vm_create.outputs.RUN_ID }} &'
