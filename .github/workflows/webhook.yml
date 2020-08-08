@@ -33,4 +33,5 @@ jobs:
       id: vm_create
       run: |
         pipenv install
+        pipenv shell
         python3 delete_all_resources.py "${{ github.event.client_payload.tag }}"
