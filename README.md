@@ -41,3 +41,4 @@ Lots of stuff I probably should do better -
 - Bulk delete resources (instead of one at a time) - couldn't figure out how to do that without stopping on errors
 - Probably a bunch more templating (types of VMs, etc)
 - Ideally I'd use something better like ARM to create these things - declarative and simpler
+
