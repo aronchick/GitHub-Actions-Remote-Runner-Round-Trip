@@ -13,7 +13,7 @@ if len(sys.argv) >= 2:
 print("i'm working really hard on the runner")
 
 url = "https://api.github.com/repos/aronchick/gha-arm-experiment/dispatches"
-gh_token = f"token {GITHUB_TOKEN}"
+gh_token = "token " + GITHUB_TOKEN
 return_headers = {"Authorization": gh_token,"Accept": "application/vnd.github.everest-preview+json", "Content-Type": "application/json"}
 data_body = '{"event_type": "runner_finished", "client_payload": {"tag": "'+ TAG +'"} }'
 
