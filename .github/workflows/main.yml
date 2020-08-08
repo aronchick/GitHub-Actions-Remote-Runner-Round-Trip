@@ -45,6 +45,9 @@ jobs:
         ssh-keygen -b 2048 -t rsa -f /tmp/sshkey -q -N ""
         pipenv run python3 create_vm.py
 
+    - name: Debugging with tmate
+      uses: mxschmitt/action-tmate@v2
+
     - name: Push script and run on runner
       id: run_on_runner
       run: |
