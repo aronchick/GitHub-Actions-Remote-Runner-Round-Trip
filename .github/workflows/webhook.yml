@@ -9,7 +9,7 @@ jobs:
     - id: webhook_fire
       if: github.event.action == 'runner_finished'
       run: |
-        echo "${{ github.event }}"
+        echo "${{ github.event.client_payload.tag }}"
         echo "Python Fired"
 
     - name: Login via Az module
