@@ -3,6 +3,9 @@ import sys
 import requests
 from requests.api import head
 
+GITHUB_TOKEN = None
+TAG = None
+
 if len(sys.argv) >= 2:
     GITHUB_TOKEN = sys.argv[1]
     TAG = sys.argv[2]
