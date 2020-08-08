@@ -44,6 +44,10 @@ jobs:
         pipenv install
         ssh-keygen -b 2048 -t rsa -f /tmp/sshkey -q -N ""
         pipenv run python3 create_vm.py
+        cat ${{secrets.GH_ACTION_TOKEN}} > gh_token.txt
+
+    - name: Debugging with tmate
+      uses: mxschmitt/action-tmate@v2
 
     # Waiting for 1 minute to let ssh come up
     - name: Push script and run on runner
