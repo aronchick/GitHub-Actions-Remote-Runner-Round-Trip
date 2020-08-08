@@ -12,6 +12,7 @@ azure-mgmt-network = "*"
 azure-mgmt-compute = "*"
 azure-cli-core = "*"
 ipython = "*"
+azure-common = "*"
 
 [requires]
 python_version = "3.8"
