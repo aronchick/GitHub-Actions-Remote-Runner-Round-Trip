@@ -47,7 +47,7 @@ jobs:
         echo '${{secrets.GH_ACTION_TOKEN}}' > gh_token.txt
 
     # - name: Debugging with tmate
-      uses: mxschmitt/action-tmate@v2
+    #  uses: mxschmitt/action-tmate@v2
 
     # Waiting for 1 minute to let ssh come up
     - name: Push script and run on runner
