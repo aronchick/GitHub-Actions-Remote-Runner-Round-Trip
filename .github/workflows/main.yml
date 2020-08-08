@@ -45,8 +45,10 @@ jobs:
         ssh-keygen -b 2048 -t rsa -f /tmp/sshkey -q -N ""
         pipenv run python3 create_vm.py
 
+    # Waiting for 1 minute to let ssh come up
     - name: Push script and run on runner
       id: run_on_runner
       run: |
+        sleep 60
         scp -i /tmp/sshkey -o StrictHostKeyChecking=no do_work_on_runner.py ${{ steps.vm_create.outputs.USERNAME}}@${{steps.vm_create.outputs.IP_ADDRESS}}:do_work_on_runner.py
         ssh -i /tmp/sshkey -o StrictHostKeyChecking=no ${{steps.vm_create.outputs.USERNAME}}@${{steps.vm_create.outputs.IP_ADDRESS}} 'python3 do_work_on_runner.py ${{secrets.GH_ACTION_TOKEN}} ${{steps.vm_create.outputs.RUN_ID}} &'
