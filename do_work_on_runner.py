@@ -3,8 +3,9 @@ import sys
 import requests
 from requests.api import head
 
-GITHUB_TOKEN = sys.argv[1]
-TAG = sys.argv[2]
+if len(sys.argv) >= 2:
+    GITHUB_TOKEN = sys.argv[1]
+    TAG = sys.argv[2]
 
 print("i'm working really hard on the runner")
 
@@ -14,7 +15,6 @@ print("i'm working really hard on the runner")
 
 url = "https://api.github.com/repos/aronchick/gha-arm-experiment/dispatches"
 return_headers = {"Authorization": f"token {GITHUB_TOKEN}","Accept": "application/vnd.github.everest-preview+json", "Content-Type": "application/json"}
-tag_dict = {"tag": f"{TAG}"}
 data_body = '{"event_type": "runner_finished", "client_payload": {"tag": "'+ TAG +'"} }'
 
 res = requests.post(url, data=data_body, headers=return_headers)
