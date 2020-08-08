@@ -13,6 +13,7 @@ azure-mgmt-compute = "*"
 azure-cli-core = "*"
 ipython = "*"
 azure-common = "*"
+requests = "*"
 
 [requires]
 python_version = "3.8"
