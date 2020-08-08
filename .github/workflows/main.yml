@@ -35,8 +35,8 @@ jobs:
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
 
-    - name: Debugging with tmate
-      uses: mxschmitt/action-tmate@v2
+    # - name: Debugging with tmate
+    #   uses: mxschmitt/action-tmate@v2
 
     - name: Run VM Creation Script
       id: vm_create

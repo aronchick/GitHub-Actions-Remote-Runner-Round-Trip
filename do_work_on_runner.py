@@ -1,6 +1,6 @@
 import requests
 import sys
-
+import requests
 from requests.api import head
 
 GITHUB_TOKEN = sys.argv[1]
@@ -13,5 +13,6 @@ return_headers = {
     "Authorization": "token {}".format(GITHUB_TOKEN),
     "Accept": "application/vnd.github.everest-preview+json",
 }
-data_body = {'event_type': 'runner_finished', 'tag': '{}'.format(TAG)}
+data_body = {'event_type': 'runner_finished', 'client_payload': {'tag': '{}'.format(TAG)}}
+
 requests.post(url, data=data_body, headers=return_headers)
