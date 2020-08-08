@@ -9,15 +9,13 @@ jobs:
     - id: webhook_fire
       if: github.event.action == 'runner_finished'
       run: |
+        pythor3 ${{ github.event }}
         echo "Python Fired"
 
     - name: Login via Az module
       uses: azure/login@v1.1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
-
-    - name: Debugging with tmate
-      uses: mxschmitt/action-tmate@v2
 
     - name: On my_custom_webhook_2 do XYZ...
       if: github.event.action == 'runner_finished'
