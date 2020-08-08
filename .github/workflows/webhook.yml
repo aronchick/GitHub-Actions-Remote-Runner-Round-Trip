@@ -6,9 +6,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Debugging with tmate
-      uses: mxschmitt/action-tmate@v2
-
     - id: webhook_fire
       if: github.event.action == 'runner_finished'
       run: |
