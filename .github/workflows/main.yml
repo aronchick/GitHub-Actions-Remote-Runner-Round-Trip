@@ -56,5 +56,5 @@ jobs:
         sleep 60
         scp -i /tmp/sshkey -o StrictHostKeyChecking=no do_work_on_runner.py ${{ steps.vm_create.outputs.USERNAME}}@${{steps.vm_create.outputs.IP_ADDRESS}}:do_work_on_runner.py
         scp -i /tmp/sshkey -o StrictHostKeyChecking=no requirements.txt ${{ steps.vm_create.outputs.USERNAME}}@${{steps.vm_create.outputs.IP_ADDRESS}}:requirements.txt
-        ssh -i /tmp/sshkey -o StrictHostKeyChecking=no ${{steps.vm_create.outputs.USERNAME}}@${{steps.vm_create.outputs.IP_ADDRESS}} 'pip install -r requirements.txt'
+        ssh -i /tmp/sshkey -o StrictHostKeyChecking=no ${{steps.vm_create.outputs.USERNAME}}@${{steps.vm_create.outputs.IP_ADDRESS}} 'python3 -m pip install -r requirements.txt'
         ssh -i /tmp/sshkey -o StrictHostKeyChecking=no ${{steps.vm_create.outputs.USERNAME}}@${{steps.vm_create.outputs.IP_ADDRESS}} 'python3 do_work_on_runner.py ${{secrets.GH_ACTION_TOKEN}} ${{steps.vm_create.outputs.RUN_ID}}'
