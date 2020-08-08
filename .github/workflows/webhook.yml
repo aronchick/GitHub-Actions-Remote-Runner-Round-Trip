@@ -8,16 +8,29 @@ jobs:
 
     - id: webhook_fire
       if: github.event.action == 'runner_finished'
-      run: |
-        pythor3 -e "print(${{ github.event }})"
-        echo "Python Fired"
+      run: echo "Event fired"
 
+    - uses: actions/checkout@v2
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install pipenv
+      uses: dschep/install-pipenv-action@v1
+      
     - name: Login via Az module
       uses: azure/login@v1.1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
 
-    - name: On my_custom_webhook_2 do XYZ...
-      if: github.event.action == 'runner_finished'
+    # - name: Debugging with tmate
+    #   uses: mxschmitt/action-tmate@v2
+
+    # Have to do the pipenv install again because we don't know if we're on the same runner
+    - name: Run VM Creation Script
+      id: vm_create
       run: |
-        echo "Hello From my_custom_webhook_2...doing XYZ"
+        pipenv install
+        python3 delete_all_resources.py "${{ github.event.client_payload.tag }}"

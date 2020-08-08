@@ -24,6 +24,8 @@ resource_client = get_client_from_cli_profile(ResourceManagementClient)
 
 # Constants we need in multiple places: the resource group name and the region
 # in which we provision resources. You can change these values however you want.
+
+# THIS NEEDS TO BE PROVISIONED AHEAD OF TIME AND THIS ACCOUNT NEEDS TO HAVE CREATE PERMISSIONS
 RESOURCE_GROUP_NAME = "ci_sample_rg"
 LOCATION = "centralus"
 unique_string = uuid.uuid4().hex
