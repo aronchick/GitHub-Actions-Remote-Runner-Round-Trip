@@ -34,7 +34,7 @@ az ad sp create-for-rbac --name "CIServicePrincipal" --role contributor --scopes
 
 At the end of it, your secrets should look like this (I'd have debugging on, for now)
 
-![Image of Secrets](https://github.com/aronchick/GitHub-Actions-Remote-Runner-Round-Trip/secrets.png)
+![Image of Secrets](https://github.com/aronchick/GitHub-Actions-Remote-Runner-Round-Trip/secrets.jpg)
 
 Lots of stuff I probably should do better - 
 - Should not push around GitHub tokens or tags like I do (should create those resources on the VM during creation)
